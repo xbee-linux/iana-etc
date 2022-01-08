@@ -1,0 +1,22 @@
+schema-version: 1.0
+
+type: builder
+
+
+const:
+  srcDir: /usr/src
+  exportDir: /opt/iana-etc
+
+
+provision:
+  - url:
+      from: https://github.com/Mic92/iana-etc/releases/download/{% date %}/iana-etc-{% date %}.tar.gz
+      todir: "{% srcDir %}"
+
+build:
+  - shell:
+      cmds:
+        - mkdir -p {% exportDir %}/etc && cp services protocols {% exportDir %}/etc
+      directory: "{% srcDir %}/iana-etc-{% date %}"
+  - export: "{% exportDir %}"
+

@@ -1,0 +1,14 @@
+schema-version: 1.0
+
+description: |
+
+builder: ./iana-etc-builder
+
+var:
+  date: 20210611
+
+
+provision:
+  - copy:
+      builder: iana-etc
+      todir: /
