@@ -4,7 +4,7 @@ description: |
 
 builder: ./iana-etc-builder
 
-var:
+in:
   date: 20210611
 
 

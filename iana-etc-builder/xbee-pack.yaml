@@ -5,7 +5,10 @@ type: builder
 
 const:
   srcDir: /usr/src
-  exportDir: /opt/iana-etc
+
+out:
+  iana-etc: /opt/iana-etc
+
 
 
 provision:
@@ -16,7 +19,7 @@ provision:
 build:
   - shell:
       cmds:
-        - mkdir -p {% exportDir %}/etc && cp services protocols {% exportDir %}/etc
+        - mkdir -p {% iana-etc %}/etc && cp services protocols {% iana-etc %}/etc
       directory: "{% srcDir %}/iana-etc-{% date %}"
-  - export: "{% exportDir %}"
+
 
