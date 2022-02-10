@@ -1,14 +1,17 @@
 schema-version: 1.0
 
-description: |
-
-builder: ./iana-etc-builder
+type: builder
 
 in:
   date: 20210611
 
-
 provision:
-  - copy:
-      builder: iana-etc
-      todir: /
+  - url:
+      from: https://github.com/Mic92/iana-etc/releases/download/{% date %}/iana-etc-{% date %}.tar.gz
+      todir: "{% xbeeSrc %}"
+
+build:
+  - shell:
+      cmds:
+        - mkdir -p {% xbeeOut %}/etc && cp services protocols {% xbeeOut %}/etc
+      directory: "{% xbeeSrc %}/iana-etc-{% date %}"
